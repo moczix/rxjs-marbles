@@ -1,12 +1,12 @@
 {
-  "author": "Nicholas Jamieson <nicholas@cartant.com>",
+  "author": "Moczniak <czornypan@gmail>",
   "bugs": {
     "url": "https://github.com/cartant/rxjs-marbles/issues"
   },
   "dependencies": {
     "fast-equals": "^2.0.0"
   },
-  "description": "An RxJS marble testing library for any test framework",
+  "description": "Forked version of (https://github.com/cartant/rxjs-marbles) An RxJS marble testing library for any test framework",
   "devDependencies": {
     "@angular/compiler": "^8.0.0",
     "@angular/core": "^8.0.0",
@@ -82,7 +82,7 @@
   },
   "main": "./dist/index.js",
   "module": "./dist/esm5/index.js",
-  "name": "rxjs-marbles",
+  "name": "rxjs-marbles-with-amd",
   "optionalDependencies": {},
   "peerDependencies": {
     "rxjs": "^6.0.0"

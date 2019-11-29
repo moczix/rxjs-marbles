@@ -4,12 +4,16 @@ const path = require("path");
 const webpack = require("webpack");
 const webpackRxjsExternals = require("webpack-rxjs-externals");
 
-module.exports = framework => env => {
+function getConfig(framework, env, moduleType) {
+  const libraryName =
+    moduleType === "amd" ? `rxjs-marbles/${framework}` : "rxjsMarbles";
+  const libraryTarget = moduleType === "amd" ? "amd" : "umd";
+
   let suffix = framework ? `-${framework}` : "";
-  let filename = `rxjs-marbles${suffix}.umd.js`;
+  let filename = `rxjs-marbles${suffix}.${libraryTarget}.js`;
   let mode = "development";
   if (env && env.production) {
-    filename = "rxjs-marbles${suffix}.min.umd.js";
+    filename = `rxjs-marbles${suffix}.min.${libraryTarget}.js`;
     mode = "production";
   }
   return {
@@ -48,12 +52,17 @@ module.exports = framework => env => {
     },
     output: {
       filename,
-      library: "rxjsMarbles",
-      libraryTarget: "umd",
+      library: libraryName,
+      libraryTarget: libraryTarget,
       path: path.resolve(__dirname, "./dist/bundles")
     },
     resolve: {
       extensions: [".ts", ".js"]
     }
   };
-};
+}
+
+module.exports = framework => env => [
+  getConfig(framework, env, "umd"),
+  getConfig(framework, env, "amd")
+];
